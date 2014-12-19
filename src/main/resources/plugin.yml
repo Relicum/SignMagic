@@ -1,0 +1,5 @@
+name: SignMagic
+main: com.relicum.signmagic.SignMagic
+authors: [libraryaddict,Relicum]
+version: ${project.version}
+description: Sign Editing

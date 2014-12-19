@@ -1,0 +1,6 @@
+# Do you sneak click to edit the sign. Or not sneak and click to edit the sign?
+sneakClick: false
+creativeOnly: false
+blacklistEnabled: false
+blacklist:
+  - world_the_end
