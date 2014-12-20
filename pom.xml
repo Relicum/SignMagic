@@ -7,7 +7,7 @@
     <artifactId>SignMagic</artifactId>
     <packaging>jar</packaging>
     <name>SignMagic</name>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <description>Re edit signs directly</description>
     <developers>
         <developer>
@@ -31,32 +31,61 @@
                 <directory>${basedir}/src/main/resources/</directory>
                 <includes>
                     <include>*.yml</include>
+                    <include>*.xml</include>
+                    <include>*.json</include>
                 </includes>
             </resource>
         </resources>
         <finalName>${project.name}-${project.version}</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                        <source>1.7</source>
-                        <target>1.7</target>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <compilerArguments>
+                        <O>-Xlint:all</O>
+                        <O>-Xlint:-path</O>
+                    </compilerArguments>
+                    <encoding>UTF-8</encoding>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>${project.name}-${project.version}</finalName>
+                    <useBaseVersion>true</useBaseVersion>
+                    <shadedClassifierName/>
+                    <outputDirectory>${project.basedir}</outputDirectory>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/maven/</exclude>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.txt</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                                <exclude>about.html</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <minimizeJar>true</minimizeJar>
+                    <promoteTransitiveDependencies>false</promoteTransitiveDependencies>
                 </configuration>
             </plugin>
             <plugin>
@@ -81,6 +110,18 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>minecraft-server</artifactId>
             <version>1.8-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.relicum</groupId>
+            <artifactId>Ipsum</artifactId>
+            <version>1.0.55-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.4</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

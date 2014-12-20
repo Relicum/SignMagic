@@ -3,3 +3,36 @@ main: com.relicum.signmagic.SignMagic
 authors: [libraryaddict,Relicum]
 version: ${project.version}
 description: Sign Editing
+depend: [Yamler]
+
+
+commands:
+    sm:
+      description: Main prefix to all Sign Magic commands
+      usage: /<command> [subcommand] [args]
+      permission: signmagic.player.info
+    sma:
+      description: Main prefix to all Admin Sign Magic commands
+      usage: /<command> [subcommand] [args]
+      permission: signmagic.admin.info
+
+permissions:
+  signmagic.*:
+    description: Gives all permissions
+    children:
+      signmagic.player.*: true
+      signmagic.admin.*: true
+  signmagic.admin.*:
+    description: Gives access to all admin related commands
+    children:
+      signmagic.admin.info: true
+  signmagic.player.*:
+    description: Gives access all player commands
+    children:
+      signmagic.player.info: true
+  signmagic.admin.info:
+    description: allows admin to see plugin info
+    default: op
+  signmagic.player.info:
+    description: allows players to see player related plugin info
+    default: op

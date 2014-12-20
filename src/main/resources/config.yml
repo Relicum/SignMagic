@@ -4,3 +4,5 @@ creativeOnly: false
 blacklistEnabled: false
 blacklist:
   - world_the_end
+useIdentifier: false
+

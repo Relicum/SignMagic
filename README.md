@@ -1,4 +1,4 @@
-##SignMagic 1.2.2
+##SignMagic 1.2.3
 
 **Built using the best Java IDE around**
 

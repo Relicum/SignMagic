@@ -17,17 +17,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.relicum.signmagic.Handlers;
+package com.relicum.signmagic.Commands;
+
+import com.relicum.ipsum.Commands.AbstractCommand;
+import com.relicum.ipsum.Utils.Msg;
+import lombok.Getter;
+import org.bukkit.plugin.Plugin;
 
 /**
- * Name: IdentityAction.java Created: 19 December 2014
+ * MagicCommand
  *
  * @author Relicum
  * @version 0.0.1
  */
-public interface IdentityAction {
+public abstract class MagicCommand extends AbstractCommand {
 
-    public void setAction();
+    @Getter
+    private Msg msg;
 
-    public void apply(Object object);
+    public MagicCommand(Plugin plugin, Msg msg) {
+        super(plugin);
+        this.msg = msg;
+    }
 }
